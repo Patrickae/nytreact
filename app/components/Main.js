@@ -2,7 +2,9 @@ var React = require("react");
 
 var Search = require("./Search.js");
 
-var helper = require("../utils/helpers.js");
+var helpers = require("../utils/helpers.js");
+
+var Saved = require("./Saved")
 
 var Main = React.createClass({
 
@@ -13,7 +15,6 @@ var Main = React.createClass({
       savedResults: []
     }
   },
-
 
 
   render: function() {
@@ -27,7 +28,7 @@ var Main = React.createClass({
 
         <Search />
 
-
+        <Saved />
 
       </div>
     );

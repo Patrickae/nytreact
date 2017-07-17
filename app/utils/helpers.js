@@ -8,6 +8,27 @@ module.exports = {
     return axios.post("/api/saved", data);
   },
 
+  getSavedArticles: function(){
+    return axios.get("/api/saved", function(err, response){
+      if(err){
+        console.log(err)
+      }
+      else{
+        return(response)
+      }
+    });
+  },
+  deleteArticles: function(ID){
+    return axios.delete("/api/saved/:"+ID, function(err, response){
+      if (err){
+        console.log(err)
+      }
+      else{
+        console.log(response);
+      }
+    })
+  },
+
   getNyt: function(query, startDate, endDate) {
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     url += '?' + $.param({'api-key': "3b558bbe6588468aa1608ea2a40774da", 'q': query, 'begin_date': startDate+"0101", 'end_date': endDate+"1231"});

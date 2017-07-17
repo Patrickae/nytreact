@@ -69,6 +69,20 @@ app.post("/api/saved", function(req,res){
 });
 
 
+app.delete("/api/saved/:id", function(req, res){
+
+	SavedArticle.remove({"_id": req.params.id}, function(err, doc){
+		if(err){
+			console.log("collection couldnt be removed " + err);
+			return;
+		}else{
+			console.log("collection deleted");
+		}
+	});
+})
+
+
+
 //main route
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
