@@ -1,30 +1,91 @@
 var React = require("react");
+var helpers = require("../utils/helpers.js");
+var Results = require("./Results");
 
 var Search = React.createClass({
 
+//initial state
+  getInitialState: function() {
+    return {
+      query: "",
+      startYear: "",
+      endYear: "",
+      articles:[]
+      }
+
+  },
+  //handle form submition
+  handleChange(event) {
+    this.setState({query: this.refs.query.value});
+    this.setState({startYear: this.refs.startYear.value});
+    this.setState({endYear: this.refs.endYear.value});
+
+  },
+
+  //reach out to helper to get search results
+  searchNyt: function(event) {
+
+    event.preventDefault();
+    var query = this.state.query
+    var startYear = this.state.startYear;
+    var endYear = this.state.endYear;
+
+    helpers.getNyt(query, startYear, endYear).then(function(data){
+      console.log("This is a test");
+      this.setState({articles:data.response.docs});
+    }.bind(this));
+
+    console.log(this.state);
+
+  },
+  //render the view
   render: function() {
+    //send article info to "Results" component
+    var articles = this.state.articles;
+    var articlesToDisplay = articles.map(function(item, index){
+      if(index < 5){
+        return(
+          <Results key={index} title={item.headline.main} date={item.pub_date} article={item.lead_paragraph}
+            url={item.web_url} />
+        )
+      }
+    }.bind(this));
+
+//return jsx
     return (
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">Search</h3>
+      <div>
+        {/* Begin Search div */}
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 className="panel-title">Search</h3>
+          </div>
+          <div className="panel-body">
+            <form>
+              <div className="form-group">
+                <input type="text" className="form-control" value={this.state.query} required ref="query" placeholder="Subject" onChange={this.handleChange}/>
+              </div>
+              <div className="form-group">
+                <input type="text" className="form-control" value={this.state.startYear} required ref="startYear" placeholder="Start Year" onChange={this.handleChange}/>
+              </div>
+              <div className="form-group">
+                <input type="text" className="form-control" value={this.state.endYear} required ref="endYear" placeholder="End Year" onChange={this.handleChange}/>
+              </div>
+              <button type="submit" className="btn btn-success" onClick={this.searchNyt}>Submit</button>
+            </form>
+          </div>
         </div>
-        <div className="panel-body">
-          <form>
-            <div className="form-group">
-              <input type="text" className="form-control" required ref="about" placeholder="Subject"/>
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-control" required ref="startYear" placeholder="Start Year"/>
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-control" required ref="endYear" placeholder="End Year"/>
-            </div>
-            <button type="submit" className="btn btn-warning">Submit</button>
-          </form>
+
+        {/* Begin Results Div */}
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 className="panel-title">Results</h3>
+          </div>
+          <div className="panel-body">{articlesToDisplay}</div>
         </div>
       </div>
     );
   }
 })
+
 
 module.exports = Search;

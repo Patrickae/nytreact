@@ -2,6 +2,8 @@ var React = require("react");
 
 var Search = require("./Search.js");
 
+var helper = require("../utils/helpers.js");
+
 var Main = React.createClass({
 
   getInitialState: function(){
@@ -11,6 +13,7 @@ var Main = React.createClass({
       savedResults: []
     }
   },
+
 
 
   render: function() {
@@ -25,14 +28,6 @@ var Main = React.createClass({
       <Search />
 
 
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">Results</h3>
-          </div>
-          <div className="panel-body">
-            Testing changes
-          </div>
-        </div>
 
       </div>
     );

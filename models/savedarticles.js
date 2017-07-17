@@ -1,3 +1,4 @@
+
 var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
@@ -14,6 +15,6 @@ var SavedSchema = new Schema({
   }
 });
 
-var SavedArticles = mongoose.model("SavedArticles", SavedSchema);
+var SavedArticle = mongoose.model("SavedArticles", SavedSchema);
 
-module.exports = SavedArticles;
+module.exports = SavedArticle;

@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 
 
 //require schema
-var SavedArticles = require("./models/savedarticles.js");
+var SavedArticle = require("./models/savedarticles.js");
 
 var app = express();
 
@@ -36,20 +36,15 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-
-
 //----------------------
 
-//main route
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
+
 
 
 
 //route to api
-app.get("/api", function(req, res) {
-  SavedArticles.find({}).exec(function(err, doc) {
+app.get("/api/saved", function(req, res) {
+  SavedArticle.find({}).exec(function(err, doc) {
     if (err) {
       console.log(err);
     }
@@ -59,6 +54,25 @@ app.get("/api", function(req, res) {
   });
 });
 
+
+//save articles to favorites
+app.post("/api/saved", function(req,res){
+  var entry = new SavedArticle(req.body);
+  entry.save(function(err, doc){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log(doc);
+    }
+  });
+});
+
+
+//main route
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 
 
