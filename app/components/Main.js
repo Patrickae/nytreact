@@ -25,7 +25,7 @@ var Main = React.createClass({
         </div>
 
 
-      <Search />
+        <Search />
 
 
 

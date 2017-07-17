@@ -1,6 +1,7 @@
 var React = require("react");
 var helpers = require("../utils/helpers.js");
 var Results = require("./Results");
+var moment = require('moment');
 
 var Search = React.createClass({
 
@@ -30,9 +31,9 @@ var Search = React.createClass({
     var startYear = this.state.startYear;
     var endYear = this.state.endYear;
 
-    helpers.getNyt(query, startYear, endYear).then(function(data){
-      console.log("This is a test");
-      this.setState({articles:data.response.docs});
+    helpers.getNyt(query, startYear, endYear).then(function(apiResults){
+      console.log( apiResults );
+      this.setState({articles:apiResults.data.response.docs});
     }.bind(this));
 
     console.log(this.state);
@@ -44,7 +45,10 @@ var Search = React.createClass({
     var articles = this.state.articles;
     var articlesToDisplay = articles.map(function(item, index){
       if(index < 5){
+        //format date with momentjs
+        item.pub_date = moment(item.pub_date).format("MMMM Do YYYY");
         return(
+          //return the first 5 indexes
           <Results key={index} title={item.headline.main} date={item.pub_date} article={item.lead_paragraph}
             url={item.web_url} />
         )

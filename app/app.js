@@ -10,6 +10,7 @@ var Main = require("./components/Main");
 ReactDOM.render(
   <HashRouter>
     <Route path="/" component={Main}>
+      
     </Route>
   </HashRouter>,
   document.getElementById("app"));
