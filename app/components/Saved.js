@@ -1,24 +1,20 @@
 //require dependencies
 var React = require("react");
 var helpers = require("../utils/helpers");
+import SavedArticle from "./SavedArticle";
 
 var Saved = React.createClass({
 
-  getInitialState: function(){
+  getInitialState: function() {
 
-    return{
-      savedArticles:[]
-    }
+    return {savedArticles: ["hello"]}
 
   },
 
+  componentDidMount(event) {
 
-  componentWillMount: function(){
-
-    helpers.getSavedArticles().then(function(response){
-      this.setState({
-        savedArticles:response.data
-      });
+    helpers.getSavedArticles().then(function(response) {
+      this.setState({savedArticles: response.data});
     }.bind(this));
 
     console.log("Main Component Mounted");
@@ -26,36 +22,33 @@ var Saved = React.createClass({
 
   },
 
+  getSavedArticles: function() {
 
+    helpers.getSavedArticles().then(function(response) {
+      this.setState({savedArticles: response.data});
+    }.bind(this));
 
-  getSavedArticles: function(){
-
-    // helpers.getSavedArticles().then(function(response){
-    //   this.setState({
-    //     savedArticles: response.data
-    //   });
-    // }.bind(this));
-    //
-    // console.log("Clicked");
+    console.log("Clicked");
     console.log(this.state.savedArticles);
 
   },
 
-  render: function(){
+  render: function() {
+    var savedArticles = this.state.savedArticles;
 
-    var savedArticlesDiv = this.state.savedArticles.map(function(item, index){
-  <div className="well well-sm"value = {item._id}>
-    <a href={item.url}><h3>{item.title}</h3></a>
-    <h5>{item.date}</h5>
-  </div>
-});
+    var savedArticles = savedArticles.map(function(item, index) {
+      return <SavedArticle id= {item._id} url={item.url} title={item.title} date={item.date} restore={this.getSavedArticles} />
+    }.bind(this));
+    console.log(this.state.savedArticles);
 
-    return(
+    return (
       <div className="well well-sm">
         <button className="btn btn-warning" onClick={this.getSavedArticles}>Get Saved Articles</button>
+        <br/>
+        <div>
+          {savedArticles}
+        </div>
 
-        {savedArticlesDiv}
-        
       </div>
     )
   }

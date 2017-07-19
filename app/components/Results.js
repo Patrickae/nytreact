@@ -1,5 +1,6 @@
 var React = require("react");
-var helpers = require("../utils/helpers")
+var helpers = require("../utils/helpers");
+
 
 var Results = React.createClass({
   render:function(){

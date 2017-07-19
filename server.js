@@ -54,6 +54,17 @@ app.get("/api/saved", function(req, res) {
   });
 });
 
+app.get("/api/saved/:id", function(req, res) {
+  SavedArticle.find({"_id": req.params.id}).exec(function(err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(doc);
+    }
+  });
+});
+
 
 //save articles to favorites
 app.post("/api/saved", function(req,res){
@@ -71,7 +82,7 @@ app.post("/api/saved", function(req,res){
 
 app.delete("/api/saved/:id", function(req, res){
 
-	SavedArticle.remove({"_id": req.params.id}, function(err, doc){
+	SavedArticle.findByIdAndRemove(req.params.id, function(err, doc){
 		if(err){
 			console.log("collection couldnt be removed " + err);
 			return;

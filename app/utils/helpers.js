@@ -19,7 +19,7 @@ module.exports = {
     });
   },
   deleteArticles: function(ID){
-    return axios.delete("/api/saved/:"+ID, function(err, response){
+    return axios.delete("/api/saved/"+ID, function(err, response){
       if (err){
         console.log(err)
       }
