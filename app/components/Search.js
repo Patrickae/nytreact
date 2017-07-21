@@ -49,8 +49,8 @@ var Search = React.createClass({
         item.pub_date = moment(item.pub_date).format("MMMM Do YYYY");
         return(
           //return the first 5 indexes
-          <Results key={index} title={item.headline.main} date={item.pub_date} article={item.lead_paragraph}
-            url={item.web_url} />
+          <Results key={item._id} title={item.headline.main} date={item.pub_date} article={item.lead_paragraph}
+            url={item.web_url} getSaved={this.props.getSaved} />
         )
       }
     }.bind(this));

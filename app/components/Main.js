@@ -6,18 +6,44 @@ var helpers = require("../utils/helpers.js");
 
 var Saved = require("./Saved")
 
-var Main = React.createClass({
+class Main extends React.Component{
 
-  getInitialState: function(){
+  constructor(){
+  super();
 
-    return{
-      searchResults: [],
-      savedResults: []
+    this.state = {
+
+      savedArticles: []
     }
-  },
-  
 
-  render: function() {
+this.componentDidMount = this.componentDidMount.bind(this);
+this.getSavedArticles = this.getSavedArticles.bind(this);
+
+} //end constructor
+
+
+
+  componentDidMount(event) {
+
+    helpers.getSavedArticles().then(function(response) {
+      this.setState({savedArticles: response.data});
+    }.bind(this));
+
+    console.log("Main Component Mounted");
+  }
+
+
+  getSavedArticles(){
+
+    helpers.getSavedArticles().then(function(response) {
+      this.setState({savedArticles: response.data});
+    }.bind(this));
+
+
+  }
+
+
+  render(){
     return (
       <div className = "container">
         <div className="jumbotron">
@@ -26,13 +52,13 @@ var Main = React.createClass({
         </div>
 
 
-        <Search />
+        <Search getSaved={this.getSavedArticles} />
 
-        <Saved />
+        <Saved saved={this.state.savedArticles} getSaved={this.getSavedArticles} />
 
       </div>
     );
   }
-})
+}
 
 module.exports = Main;

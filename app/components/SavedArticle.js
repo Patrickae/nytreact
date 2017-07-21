@@ -7,8 +7,11 @@ var SavedArticle = React.createClass({
   deleteArticle: function(){
       helpers.deleteArticles(this.props.id);
       this.props.restore();
-
   },
+  componentDidReceiveProps(){
+    this.props.restore();
+  },
+
 
   render: function(){
     return(

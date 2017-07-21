@@ -40,6 +40,7 @@ var Results = React.createClass({
     };
 
     helpers.saveArticle(object);
+    this.props.getSaved();
   }
 
 })
