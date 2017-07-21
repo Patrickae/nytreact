@@ -1,0 +1,25 @@
+body{
+  background-color: #4E8098;
+  font-family: 'Raleway', sans-serif;
+}
+
+a{
+  color:#A31621;
+}
+
+
+
+.jumbotron{
+  background-color: #FFFFFF;
+  font-family: 'IM Fell English', serif;
+}
+
+.panel-body{
+  background-color: #CED3DC;
+}
+
+
+#savedArticles{
+
+  background-color: #CED3DC;
+}

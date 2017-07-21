@@ -60,7 +60,7 @@ var Search = React.createClass({
       <div>
         {/* Begin Search div */}
         <div className="panel panel-default">
-          <div className="panel-heading">
+          <div className="panel-heading" id="search-heading">
             <h3 className="panel-title">Search</h3>
           </div>
           <div className="panel-body">

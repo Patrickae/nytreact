@@ -17,7 +17,7 @@ var Saved = React.createClass({
 
 
     return (
-      <div className="well well-sm">
+      <div className="well well-sm" id="savedArticles">
 
         <div>
           {savedArticles}

@@ -48,7 +48,7 @@ this.getSavedArticles = this.getSavedArticles.bind(this);
       <div className = "container">
         <div className="jumbotron">
           <h1>New York Times Scrubber</h1>
-          <p>find news from years past</p>
+          <p><i>find news from years past</i></p>
         </div>
 
 
