@@ -1,0 +1,8 @@
+{
+  "name": "New York Times Search",
+  "description": "Search NYT and save articles",
+  "repository": "https://github.com/Patrickae/ytreact",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["mongo","express","react","node"],
+  "image": "heroku/nodejs"
+}

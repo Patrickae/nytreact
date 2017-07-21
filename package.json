@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "new york times scraper",
   "main": "public/index.html",
+  "engine":{
+    "node": "8.1.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack & node server",
