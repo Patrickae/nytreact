@@ -9,14 +9,7 @@ module.exports = {
   },
 
   getSavedArticles: function(){
-    return axios.get("/api/saved", function(err, response){
-      if(err){
-        console.log(err)
-      }
-      else{
-        return(response)
-      }
-    });
+    return axios.get("/api/saved");
   },
   deleteArticles: function(ID){
     return axios.delete("/api/saved/"+ID, function(err, response){

@@ -45,7 +45,10 @@ this.getSavedArticles = this.getSavedArticles.bind(this);
 
   render(){
     return (
-      <div className = "container">
+
+      <div className = "container-fluid">
+
+
         <div className="jumbotron">
           <h1>New York Times Scrubber</h1>
           <p><i>find news from years past</i></p>
@@ -57,6 +60,7 @@ this.getSavedArticles = this.getSavedArticles.bind(this);
         <Saved saved={this.state.savedArticles} getSaved={this.getSavedArticles} />
 
       </div>
+
     );
   }
 }

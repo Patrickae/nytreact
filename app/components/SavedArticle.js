@@ -5,8 +5,8 @@ import helpers from "../utils/helpers";
 var SavedArticle = React.createClass({
 
   deleteArticle: function(){
-      helpers.deleteArticles(this.props.id);
-      this.props.restore();
+      helpers.deleteArticles(this.props.id).then(this.props.restore());
+
   },
   componentDidReceiveProps(){
     this.props.restore();
