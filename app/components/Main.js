@@ -49,9 +49,11 @@ this.getSavedArticles = this.getSavedArticles.bind(this);
       <div className = "container-fluid">
 
 
-        <div className="jumbotron">
+        <div className="jumbotron text-center">
           <h1>New York Times Scrubber</h1>
           <p><i>find news from years past</i></p>
+          <br/>
+          <a href="https://github.com/Patrickae/nytreact" target="_blank"><i className="fa fa-github fa-3x"></i></a>
         </div>
 
 

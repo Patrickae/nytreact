@@ -11,7 +11,7 @@ var SavedArticle = require("./models/savedarticles.js");
 var app = express();
 
 //use port 8080 or the port chosen by the host
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3030;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
